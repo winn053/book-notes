@@ -1,0 +1,48 @@
+<%- include('partials/header.ejs'); -%>
+
+  <div class="px-4 py-5 my-5 text-center">
+    <div class="col-lg-6 mx-auto">
+      <h2 class="display-5 fw-bold text-body-emphasis">Books I've Read</h2>
+      <p class="lead mb-4">
+        This is a learning project where I copied someone else's website functionality (<a href="https://sive.rs/book">Derek Sivers</a>). I won't be updating it very often, <em>if at all</em>. 
+        I'll include some books from memory that I've read in the past. The idea is that there would be written a 
+        "Tiny summary but <strong>detailed notes for each.</strong> Use the ISBN number to find it
+        from your local library or anywhere else."
+      </p>
+      <p>
+        Sorted with <strong>my top recommendations up top</strong>. Sort by <a href="/book?sort=title" id="sort-title">title</a>, <a href="/book?sort=date" id="sort-date">newest</a>, or <a href="/book?sort=rating" id="sort-rating">best</a>.
+      </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3" onclick="window.location.href='/addBook';">Add Book</button>
+        <!-- <button type="button" class="btn btn-outline-secondary btn-lg px-4" onclick="window.location.href='/addUser';">Add User</button> -->
+      </div>
+    </div>
+  </div>
+    <hr>
+
+    <% for(let book of books) { %>
+      <div class="container col-xxl-8 px-4 py-5">
+        <div class="d-flex flex-lg-row g-5 py-5">
+          <figure>
+            <!-- <img src="bootstrap-themes.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy"> -->
+            <img src="<%= book.imageName %>" alt="Cover of <%= book.title %>" loading="lazy">
+          </figure>
+          <div class="px-4">
+            <h3><a href="/book/<%= book.isbn %>"><%= book.title %> - by <%= book.author %></a></h3>
+            <!-- <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p> -->
+
+            <span style="white-space: pre-line">
+              <p>Date Read: <%= book.date_read %>.
+              How strongly I recommend it: <%= book.rating %>/10</p></span>
+            <p><%= book.summary %></p>
+          </div>
+        </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+              <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="window.location.href='/editBook/<%= book.isbn %>';">Edit Book</button>
+              <button type="button" class="btn btn-outline-secondary btn-lg px-4" onclick="window.location.href='/deleteBook/<%= book.isbn %>';">Delete Book</button>
+            </div>
+      </div>
+
+    <% } %>
+<%- include('partials/footer.ejs'); -%>

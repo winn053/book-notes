@@ -1,0 +1,86 @@
+<%- include('partials/header.ejs'); -%>
+
+<div class="container">
+<h2><%= method %> Book</h2>
+<% if (locals.method === 'Add') { %>
+<form action="/addBook" method="post">
+  <% } else { %>
+  <form action="/editBook/<%= book.isbn %>" method="post">
+    <% } %>
+
+    <div class="mb-3">
+      <!-- <label for="users" class="form-label">User: </label> -->
+      <label for="title" class="form-label">Title: </label
+      ><input
+        type="text"
+        class="form-control w-50"
+        id="title"
+        name="title"
+        value="<%= book ? book.title : '' %>"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="author" class="form-label">Author: </label
+      ><input
+        type="text"
+        class="form-control w-50"
+        id="author"
+        name="author"
+        value="<%= book ? book.author : '' %>"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="isbn" class="form-label">ISBN: </label
+      ><input
+        type="text"
+        class="form-control w-25"
+        id="isbn"
+        name="isbn"
+        value="<%= book ? book.isbn : '' %>"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="date_read" class="form-label">Date Read: </label
+      ><input
+        type="date"
+        class="form-control w-25"
+        id="date_read"
+        name="date_read"
+        value="<%= book ? book.date_read : null %>"
+        required
+        pattern="\d{4}-\d{2}-\d{2}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="rating" class="form-label">Rating: </label
+      ><input
+        type="number"
+        class="form-control w-25"
+        id="rating"
+        name="rating"
+        value="<%= book ? book.rating : null %>"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="summary" class="form-label">Summary: </label
+      ><textarea type="text" rows="4" class="form-control" id="summary" name="summary" required>
+      <%= book ? book.summary : '' %></textarea
+      >
+    </div>
+    <div class="mb-3">
+      <label for="notes" class="form-label">Notes: </label
+      ><textarea type="text" rows="10" class="form-control" id="notes" name="notes" required>
+      <%= book ? book.notes : '' %></textarea
+      >
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <!-- FUTURE - add Cancel button -->
+  </form>
+</div>
+
+<%- include('partials/footer.ejs'); -%>

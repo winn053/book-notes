@@ -1,0 +1,30 @@
+<%- include('partials/header.ejs'); -%>
+
+<main class="container col-xxl-8 px-4">
+  <header class="d-flex flex-lg-row g-5 py-5">
+    <figure>
+      <img
+        src="<%= book.imageName %>"
+        alt="Cover of <%= book.title %>"
+        loading="lazy"
+      />
+    </figure>
+    <div class="px-4">
+      <h3><%= book.title %> - by <%= book.author %></h3>
+
+      <span style="white-space: pre-line"
+        ><p>
+          ISBN: <%= book.isbn %> Date Read: <%= book.date_read %> How strongly I
+          recommend it: <%= book.rating %>/10 (See
+          <a href="/">my list of books</a> for more.)
+        </p></span
+      >
+    </div>
+  </header>
+  <p><%= book.summary %></p>
+
+  <h3>My Notes</h3>
+  <span style="white-space: pre-line"><%= book.notes %></span>
+</main>
+
+<%- include('partials/footer.ejs'); -%>

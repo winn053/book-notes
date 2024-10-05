@@ -1,0 +1,11 @@
+<%- include('partials/header.ejs'); -%>
+
+  <h2>Add User</h2>
+  <form action="/addUser" method="post">
+    <label for="firstname">First Name: </label><input type="text" id="firstname" name="firstname" value="" required />
+    <label for="lastname">Last Name: </label><input type="text" id="lastname" name="lastname" value="" required />
+
+    <button type="submit">Submit</button>
+  </form>
+
+<%- include('partials/footer.ejs'); -%>
