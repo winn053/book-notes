@@ -1,2 +1,4 @@
 /public/images/*
 /node_modules
+/scraps.txt
+/package-lock.json
